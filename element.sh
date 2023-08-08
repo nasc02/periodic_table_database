@@ -10,20 +10,20 @@ fi
 argument="$1"
 
 
-atomic_number=$($PSQL "SELECT atomic_number FROM elements WHERE atomic_number = '$argument'")
-if [ -z $atomic_number ]; 
-then
-  atomic_number=$($PSQL "SELECT atomic_number FROM elements WHERE symbol = '$argument'")
-   if [[ -z $atomic_number ]]
-   then
-    atomic_number=$($PSQL "SELECT atomic_number FROM elements WHERE name = '$argument'")
-      if [[ -z $name ]] 
-      then
-        echo "Please provide an element as an argument."
-        exit 1
-      fi
-   fi
-fi
+atomic_number=$($PSQL "SELECT atomic_number FROM elements WHERE atomic_number = $(($argument)) OR symbol = '$argument' OR name = '$argument'")
+# if [ -z $atomic_number ]; 
+# then
+#   atomic_number=$($PSQL "SELECT atomic_number FROM elements WHERE symbol = '$argument'")
+#    if [[ -z $atomic_number ]]
+#    then
+#     atomic_number=$($PSQL "SELECT atomic_number FROM elements WHERE name = '$argument'")
+#       if [[ -z $atomic_number ]] 
+#       then
+#         echo "Please provide an element as an argument."
+#         exit 1
+#       fi
+#    fi
+# fi
 
 element_name=$($PSQL "SELECT name FROM elements WHERE $atomic_number = atomic_number")
 element_symbol=$($PSQL "SELECT symbol FROM elements WHERE $atomic_number = atomic_number")
