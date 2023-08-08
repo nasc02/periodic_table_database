@@ -25,9 +25,11 @@ atomic_number=$($PSQL "SELECT atomic_number FROM elements WHERE atomic_number = 
 #    fi
 # fi
 
+type_id=$($PSQl "SELECT type_id FROM properties WHERE atomic_number = $atomic_number")
+
 element_name=$($PSQL "SELECT name FROM elements WHERE $atomic_number = atomic_number")
 element_symbol=$($PSQL "SELECT symbol FROM elements WHERE $atomic_number = atomic_number")
-element_type=$($PSQL "SELECT type FROM properties WHERE $atomic_number = atomic_number")
+element_type=$($PSQL "SELECT type FROM types WHERE $type_id = type_id")
 element_mass=$($PSQL "SELECT atomic_mass FROM properties WHERE $atomic_number = atomic_number")
 element_melting_point=$($PSQL "SELECT melting_point_celsius FROM properties WHERE $atomic_number = atomic_number")
 element_boiling_point=$($PSQL "SELECT boiling_point_celsius FROM properties WHERE $atomic_number = atomic_number")
