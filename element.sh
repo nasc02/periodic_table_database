@@ -32,4 +32,4 @@ element_mass=$($PSQL "SELECT atomic_mass FROM properties WHERE $atomic_number = 
 element_melting_point=$($PSQL "SELECT melting_point_celsius FROM properties WHERE $atomic_number = atomic_number")
 element_boiling_point=$($PSQL "SELECT boiling_point_celsius FROM properties WHERE $atomic_number = atomic_number")
 
-echo "The element with atomic number $atomic_number is $element_name($element_symbol). It's a $element_type, with a mass of $element_mass amu. $element_name has a melting point of $element_melting_point celsius and a $element_boiling_point celsius."
+echo "The element with atomic number $atomic_number is $element_name($element_symbol). It's a $element_type, with a mass of $element_mass amu. $element_name has a melting point of $element_melting_point celsius and a boiling point $element_boiling_point celsius."
